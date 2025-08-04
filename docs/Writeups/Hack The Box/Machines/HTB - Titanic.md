@@ -3,7 +3,7 @@ title: HTB - Titanic
 slug: HTB-Titanic
 tags: [HackTheBox, Linux, LFI, Gitea, ImageMagick]
 ---
-![titanic](https://c4.wallpaperflare.com/wallpaper/164/389/137/titanic-movies-love-couple-wallpaper-preview.jpg)
+![HTB - Titanic](https://c4.wallpaperflare.com/wallpaper/164/389/137/titanic-movies-love-couple-wallpaper-preview.jpg)
 
 ## Overview
 

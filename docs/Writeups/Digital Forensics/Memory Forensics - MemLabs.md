@@ -4,7 +4,7 @@ slug: Memory-Forensics-MemLabs
 tags: [Digital Forensics, Memory Forensics, Volatility, MemLabs, CTFs, Writeups, Notes]
 ---
 
-![memlabs](https://64.media.tumblr.com/e6eccba832a651a66400144fb11e7fec/c7783fdaba58c689-50/s1280x1920/4dead901f037f2994013df533e029f59ca0b4aa0.gif)
+![MemLabs-Writeup](https://64.media.tumblr.com/e6eccba832a651a66400144fb11e7fec/c7783fdaba58c689-50/s1280x1920/4dead901f037f2994013df533e029f59ca0b4aa0.gif)
 
 # Memory Forensics
 
