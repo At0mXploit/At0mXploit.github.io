@@ -10,8 +10,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Writeups',
-  tagline: 'Dinosaurs are cool',
+  title: 'At0m',
+  tagline: 'I just exist.',
   favicon: 'img/0_medium.png',
 
   // Set the production url of your site here
@@ -23,7 +23,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'At0m', // Usually your GitHub org/user name.
-  projectName: 'Writeups', // Usually your repo name.
+  projectName: 'At0m', // Usually your repo name.
 
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'ignore',
@@ -47,8 +47,8 @@ const config = {
           routeBasePath: '/',
         },
         blog: {
-          blogTitle: 'Writeups',
-          blogDescription: 'All my CTF and pentest writeups.',
+          blogTitle: 'At0m',
+          blogDescription: 'Yapping here.',
           postsPerPage: 10,
           routeBasePath: '/', // Serves blog at the site root
           showReadingTime: true,
@@ -74,7 +74,7 @@ const config = {
       // Replace with your project's social card
       // image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Writeups',
+        title: 'At0m',
         logo: {
           alt: 'My Site Logo',
           src: 'img/0_medium.png',
