@@ -4,7 +4,7 @@ slug: ROP Emporium
 tags: [Binary Exploitation, ROP Emporium]
 ---
 
-![ROP Emporium](https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2F03pzqsvvjosd1.gif)
+![ROP Emporium](https://moewalls.com/wp-content/uploads/2025/05/hypnotic-eyes-thumb.jpg)
 > I will be using `x86_64` which means 64-bit (`x86`) means 32-bit.
 ## Ret2Win
 
