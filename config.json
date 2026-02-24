@@ -13,6 +13,29 @@
   "twitter": "At0mXploit",
   "linkedin": "Rijan-Poudel",
   "medium": null,
-  "dribbble": null
+  "dribbble": null,
+  "limit": 10,
+  "repos": null,
+  "customSocials": [
+   {
+    "label": "discord",
+    "url": "https://discord.com/@At0mXploit"
+   }
+  ],
+  "friends": [
+   {
+    "name": "0x0w1z",
+    "url": "https://github.com/0x0w1z",
+    "bio": "Cursed Born Yesterday."
+   }
+  ],
+  "giscusEnabled": true,
+  "giscusRepo": "At0mXploit/At0mXploit.github.io",
+  "giscusRepoId": "R_kgDORXDSBw",
+  "giscusCategory": "General",
+  "giscusCategoryId": "DIC_kwDORXDSB84C3HnV",
+  "giscusTheme": "dark",
+  "giscusReactions": true,
+  "giscusInputPosition": "bottom"
  }
 ]
