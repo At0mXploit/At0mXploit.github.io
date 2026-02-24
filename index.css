@@ -290,6 +290,11 @@ body {
   padding: 4vh 0px !important;
 }
 
+#friends {
+  margin: 2vh 0px;
+  padding: 4vh 0px !important;
+}
+
 .projects {
   margin-left: -15px;
   /* align section w/ heading above */
