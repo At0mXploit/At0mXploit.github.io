@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,292 +8,253 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/magic-grid/dist/magic-grid.min.js"></script>
     <link rel="stylesheet" href="index.css">
-    <link rel="icon" href="https://avatars.githubusercontent.com/u/177024865?v=4" type="image/png">
-</head>
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/177024865?v=4" type="image/png"></head>
 
-<body>
-<div id="loading">
-  <div id="spinner"></div>
-</div>
-
-<div id="profile">
-  <div id="profile_img" style="background: url(https://avatars.githubusercontent.com/u/177024865?v=4) center;"></div>
-  <div id="username"><span style="display:block;">At0m</span><a href="https://github.com/At0mXploit">@At0mXploit</a></div>
-  <div id="userbio" style="display: block;">Alive | Wizard | Far Away | Wannabe Hacker</div>
-  <div id="about">
-    <span style="display:block;"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; 127.0.0.1</span>
-    <span style="display:block;"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire</span>
-    <div class="socials">
-      <span style="display:block;"><a href="https://www.twitter.com/At0mXploit" target="_blank" class="socials"><i class="fab fa-twitter"></i></a></span>
-      <span style="display:block;"><a href="https://www.linkedin.com/in/Rijan-Poudel/" target="_blank" class="socials"><i class="fab fa-linkedin-in"></i></a></span>
+  <body>
+    <div id="loading">
+      <div id="spinner"></div>
     </div>
-  </div>
-</div>
-
-<div id="display">
-  <div id="work">
-    <h1>Work.</h1>
-    <div class="projects" id="work_section">
-      <a href="https://github.com/At0mXploit/EDR-mergency" target="_blank">
-        <section>
-          <div class="section_title">EDR-mergency</div>
-          <div class="about_section">
-            <span style="display:block;">Proof-of-concept Endpoint Detection & Response (EDR) agent for Windows.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; C</span>
-            <span><i class="fas fa-star"></i>&nbsp; 5</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-      <a href="https://github.com/At0mXploit/Oops" target="_blank">
-        <section>
-          <div class="section_title">Oops</div>
-          <div class="about_section">
-            <span style="display:block;">Linux kernel development and exploitation lab.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; C</span>
-            <span><i class="fas fa-star"></i>&nbsp; 3</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-      <a href="https://github.com/At0mXploit/Vulnerability-Research" target="_blank">
-        <section>
-          <div class="section_title">Vulnerability-Research</div>
-          <div class="about_section">
-            <span style="display:block;">Studying vulnerabilities responsibl-ishy.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-star"></i>&nbsp; 3</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-      <a href="https://github.com/At0mXploit/Cryptography" target="_blank">
-        <section>
-          <div class="section_title">Cryptography</div>
-          <div class="about_section">
-            <span style="display:block;">I failed in Maths.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; Python</span>
-            <span><i class="fas fa-star"></i>&nbsp; 2</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-      <a href="https://github.com/At0mXploit/CTFy" target="_blank">
-        <section>
-          <div class="section_title">CTFy</div>
-          <div class="about_section">
-            <span style="display:block;">Random CTF things.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; WebAssembly</span>
-            <span><i class="fas fa-star"></i>&nbsp; 2</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-
-      <a href="https://github.com/At0mXploit/Web3" target="_blank">
-        <section>
-          <div class="section_title">Web3</div>
-          <div class="about_section">
-            <span style="display:block;">Learning Web3.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; Solidity</span>
-            <span><i class="fas fa-star"></i>&nbsp; 1</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-      <a href="https://github.com/At0mXploit/Genesis" target="_blank">
-        <section>
-          <div class="section_title">Genesis</div>
-          <div class="about_section">
-            <span style="display:block;">Simple blockchain implementation.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; Python</span>
-            <span><i class="fas fa-star"></i>&nbsp; 1</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-      <a href="https://github.com/At0mXploit/TorchTales" target="_blank">
-        <section>
-          <div class="section_title">TorchTales</div>
-          <div class="about_section">
-            <span style="display:block;">Learning & Building in PyTorch</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; Jupyter Notebook</span>
-            <span><i class="fas fa-star"></i>&nbsp; 5</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-      <a href="https://github.com/At0mXploit/Trackor" target="_blank">
-        <section>
-          <div class="section_title">Trackor</div>
-          <div class="about_section">
-            <span style="display:block;">Custom MCP server and dumb client with FastMCP & Streamlit.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; Python</span>
-            <span><i class="fas fa-star"></i>&nbsp; 3</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 1</span>
-          </div>
-        </section>
-      </a>
-      <a href="https://github.com/At0mXploit/Peak" target="_blank">
-        <section>
-          <div class="section_title">Peak</div>
-          <div class="about_section">
-            <span style="display:block;">REST API backend with FastAPI, PostgreSQL & SQLAlchemy.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; Python</span>
-            <span><i class="fas fa-star"></i>&nbsp; 3</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-      <a href="https://github.com/At0mXploit/RAG-Tales" target="_blank">
-        <section>
-          <div class="section_title">RAG-Tales</div>
-          <div class="about_section">
-            <span style="display:block;">LLM retrieval + embeddings experiments.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; Jupyter Notebook</span>
-            <span><i class="fas fa-star"></i>&nbsp; 1</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-
-      <!-- Other / Infra / Misc -->
-      <a href="https://github.com/At0mXploit/Wubba-Lubba-Dub-Dub" target="_blank">
-        <section>
-          <div class="section_title">Wubba-Lubba-Dub-Dub</div>
-          <div class="about_section">
-            <span style="display:block;">A K8 demo that proves it can handle your dreams and nightmares...</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; JavaScript</span>
-            <span><i class="fas fa-star"></i>&nbsp; 2</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-      <a href="https://github.com/At0mXploit/Eva-VM" target="_blank">
-        <section>
-          <div class="section_title">Eva-VM</div>
-          <div class="about_section">
-            <span style="display:block;">Stack-based bytecode virtual machine.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; Python</span>
-            <span><i class="fas fa-star"></i>&nbsp; 1</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-      <a href="https://github.com/At0mXploit/Torosaurus" target="_blank">
-        <section>
-          <div class="section_title">Torosaurus</div>
-          <div class="about_section">
-            <span style="display:block;">Cloud Infra with AWS & Terraform.</span>
-          </div>
-          <div class="bottom_section">
-            <span><i class="fas fa-code"></i>&nbsp; HCL</span>
-            <span><i class="fas fa-star"></i>&nbsp; 1</span>
-            <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
-          </div>
-        </section>
-      </a>
-
-      <!-- Add more remaining projects here as needed in same order -->
-
-    </div>
-  </div>
-
-  <div id="forks" style="display:none;">
-    <h1>Forks.</h1>
-    <div class="projects" id="forks_section"></div>
-  </div>
-
-  <div id="blog_section">
-    <h1>Blog.</h1>
-    <div id="blogs"></div>
-  </div>
-
-  <div id="footer">
-    <a href="https://github.com/At0mXploit" target="_blank">made on earth by a human</a>
-  </div>
-</div>
-
-<script type="text/javascript">
-  setTimeout(function() {
-    document.getElementById("loading").classList.add("animated");
-    document.getElementById("loading").classList.add("fadeOut");
-    setTimeout(function() {
-      document.getElementById("loading").style.display = "none";
-    }, 800);
-  }, 1500);
-
-  $.getJSON("blog.json", function(blog) {
-    blog = blog || [];
-    if (blog.length == 0) {
-      return (document.getElementById("blog_section").style.display = "none");
-    }
-    for (var i = 0; i < blog.length; i++) {
-      $("#blogs").append(`
-        <a href="./blog/${blog[i].url_title}/" target="_blank">
-            <section>
-                <img src="./blog/${blog[i].url_title}/${blog[i].top_image}">
-                <div class="blog_container">
-                    <div class="section_title">${blog[i].title}</div>
-                    <div class="about_section">${blog[i].sub_title}</div>
+    <div id="profile">
+      <div id="profile_img" style="background: url(&quot;https://avatars.githubusercontent.com/u/177024865?v=4&quot;);"></div>
+      <div id="username"><span style="display:block;">At0m</span><a href="https://github.com/At0mXploit">@At0mXploit</a></div>
+      <div id="userbio" style="display: block;">Alive | Wizard | Far Away | Wannabe Hacker</div>
+      <div id="about">
+                <span style="display:none;"><i class="fas fa-users"></i> &nbsp; null</span>
+                <span style="display:none;"><i class="fas fa-envelope"></i> &nbsp; null</span>
+                <span style="display:none;"><i class="fas fa-link"></i> &nbsp; <a href=""></a></span>
+                <span style="display:block;"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; 127.0.0.1</span>
+                <span style="display:block;"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire</span>
+                <div class="socials">
+                <span style="display:block;"><a href="https://www.twitter.com/At0mXploit" target="_blank" class="socials"><i class="fab fa-twitter"></i></a></span>
+                <span style="display:none !important;"><a href="https://www.dribbble.com/null" target="_blank" class="socials"><i class="fab fa-dribbble"></i></a></span>
+                <span style="display:block;"><a href="https://www.linkedin.com/in/Rijan-Poudel/" target="_blank" class="socials"><i class="fab fa-linkedin-in"></i></a></span>
+                <span style="display:none !important;"><a href="https://www.medium.com/@null/" target="_blank" class="socials"><i class="fab fa-medium-m"></i></a></span>
+                <span><a href="https://discord.com/@At0mXploit" target="_blank" class="socials"><i class="fab fa-discord"></i>&nbsp;Discord</a></span>
                 </div>
-            </section>
-        </a>`);
-    }
-  }).fail(function() {
-    return (document.getElementById("blog_section").style.display = "none");
-  });
+                </div>
+    </div>
+    <div id="display">
+      <div id="work">
+        <h1>Work.</h1>
+        <div class="projects" id="work_section">
+                        <a href="https://github.com/At0mXploit/GitGudFolio" target="_blank">
+                        <section>
+                            <div class="section_title">GitGudFolio</div>
+                            <div class="about_section">
+                            <span style="display:block;">A personal portfolio + blog for every GitHub user - but better.</span>
+                            </div>
+                            <div class="bottom_section">
+                                <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; JavaScript</span>
+                                <span><i class="fas fa-star"></i>&nbsp; 1</span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                            </div>
+                        </section>
+                        </a>
+                        <a href="https://github.com/At0mXploit/Cryptography" target="_blank">
+                        <section>
+                            <div class="section_title">Cryptography</div>
+                            <div class="about_section">
+                            <span style="display:block;">I failed in Maths.</span>
+                            </div>
+                            <div class="bottom_section">
+                                <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Python</span>
+                                <span><i class="fas fa-star"></i>&nbsp; 2</span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                            </div>
+                        </section>
+                        </a>
+                        <a href="https://github.com/At0mXploit/Web3" target="_blank">
+                        <section>
+                            <div class="section_title">Web3</div>
+                            <div class="about_section">
+                            <span style="display:block;">Learning Web3.</span>
+                            </div>
+                            <div class="bottom_section">
+                                <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Solidity</span>
+                                <span><i class="fas fa-star"></i>&nbsp; 1</span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                            </div>
+                        </section>
+                        </a>
+                        <a href="https://github.com/At0mXploit/At0mXploit.github.io" target="_blank">
+                        <section>
+                            <div class="section_title">At0mXploit.github.io</div>
+                            <div class="about_section">
+                            <span style="display:block;">Made on earth by a human.</span>
+                            </div>
+                            <div class="bottom_section">
+                                <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; HTML</span>
+                                <span><i class="fas fa-star"></i>&nbsp; 1</span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                            </div>
+                        </section>
+                        </a>
+                        <a href="https://github.com/At0mXploit/Genesis" target="_blank">
+                        <section>
+                            <div class="section_title">Genesis</div>
+                            <div class="about_section">
+                            <span style="display:block;">Simple Implementation of How Blockchain works.</span>
+                            </div>
+                            <div class="bottom_section">
+                                <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Python</span>
+                                <span><i class="fas fa-star"></i>&nbsp; 1</span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                            </div>
+                        </section>
+                        </a>
+                        <a href="https://github.com/At0mXploit/Vulnerability-Research" target="_blank">
+                        <section>
+                            <div class="section_title">Vulnerability-Research</div>
+                            <div class="about_section">
+                            <span style="display:block;">Studying vulnerabilities… responsibly-ish.</span>
+                            </div>
+                            <div class="bottom_section">
+                                <span style="display:none;"><i class="fas fa-code"></i>&nbsp; null</span>
+                                <span><i class="fas fa-star"></i>&nbsp; 3</span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                            </div>
+                        </section>
+                        </a>
+                        <a href="https://github.com/At0mXploit/CTFy" target="_blank">
+                        <section>
+                            <div class="section_title">CTFy</div>
+                            <div class="about_section">
+                            <span style="display:block;">Random CTFs Things.</span>
+                            </div>
+                            <div class="bottom_section">
+                                <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; WebAssembly</span>
+                                <span><i class="fas fa-star"></i>&nbsp; 2</span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                            </div>
+                        </section>
+                        </a>
+                        <a href="https://github.com/At0mXploit/RAG-Tales" target="_blank">
+                        <section>
+                            <div class="section_title">RAG-Tales</div>
+                            <div class="about_section">
+                            <span style="display:block;">Full control over these clankers.</span>
+                            </div>
+                            <div class="bottom_section">
+                                <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Jupyter Notebook</span>
+                                <span><i class="fas fa-star"></i>&nbsp; 1</span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                            </div>
+                        </section>
+                        </a>
+                        <a href="https://github.com/At0mXploit/Oops" target="_blank">
+                        <section>
+                            <div class="section_title">Oops</div>
+                            <div class="about_section">
+                            <span style="display:block;">A Linux kernel development and exploitation lab.</span>
+                            </div>
+                            <div class="bottom_section">
+                                <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; C</span>
+                                <span><i class="fas fa-star"></i>&nbsp; 3</span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                            </div>
+                        </section>
+                        </a></div>
+      </div>
+      <div id="forks" style="display:none;">
+        <h1>Forks.</h1>
+        <div class="projects" id="forks_section"></div>
+      </div>
+      <div id="friends" style="display: block;">
+        <h1>Friends.</h1>
+        <div class="projects" id="friends_section">
+                        <a href="https://github.com/0x0w1z" target="_blank">
+                        <section>
+                            <div class="section_title">0x0w1z</div>
+                            <div class="about_section">
+                            <span style="display:block;">Cursed Born Yesterday.</span>
+                            </div>
+                            <div class="bottom_section">
+                                <span><i class="fas fa-globe"></i>&nbsp; https://github.com/0x0w1z</span>
+                            </div>
+                        </section>
+                        </a></div>
+      </div>
+      <div id="blog_section">
+        <h1>Blog.</h1>
+        <div id="blogs"></div>
+      </div>
+      <div id="footer">
+        <a href="https://github.com/At0mXploit" target="_blank">made on earth by a human</a>
+      </div>
+    </div>
+    <script type="text/javascript">
+      setTimeout(function() {
+        document.getElementById("loading").classList.add("animated");
+        document.getElementById("loading").classList.add("fadeOut");
+        setTimeout(function() {
+          document.getElementById("loading").classList.remove("animated");
+          document.getElementById("loading").classList.remove("fadeOut");
+          document.getElementById("loading").style.display = "none";
+        }, 800);
+      }, 1500);
+      $.getJSON("blog.json", function(blog) {
+        blog = blog || [];
+        if (blog.length == 0) {
+          return (document.getElementById("blog_section").style.display =
+            "none");
+        }
+        for (var i = 0; i < blog.length; i++) {
+          $("#blogs").append(`
+            <a href="./blog/${blog[i].url_title}/" target="_blank">
+                <section>
+                    <img src="./blog/${blog[i].url_title}/${blog[i].top_image}">
+                    <div class="blog_container">
+                        <div class="section_title">${blog[i].title}</div>
+                        <div class="about_section">
+                            ${blog[i].sub_title}
+                        </div>
+                    </div>
+                </section>
+            </a>
+            `);
+        }
+      }).fail(function() {
+        return (document.getElementById("blog_section").style.display = "none");
+      });
+    </script>
 
-  const magicProjectsGrid = new MagicGrid({
-    container: "#work_section",
-    animate: false,
-    gutter: 30,
-    static: true,
-    useMin: false,
-    maxColumns: 2,
-    useTransform: true
-  });
+    <script>
+      const magicProjectsGrid = new MagicGrid({
+        container: "#work_section",
+        animate: false,
+        gutter: 30, // default gutter size
+        static: true,
+        useMin: false,
+        maxColumns: 2,
+        useTransform: true
+      });
 
-  const magicForksGrid = new MagicGrid({
-    container: "#forks_section",
-    animate: false,
-    gutter: 30,
-    static: true,
-    useMin: false,
-    maxColumns: 2,
-    useTransform: true
-  });
+      const magicForksGrid = new MagicGrid({
+        container: "#forks_section",
+        animate: false,
+        gutter: 30, // default gutter size
+        static: true,
+        useMin: false,
+        maxColumns: 2,
+        useTransform: true
+      });
 
-  $(document).ready(() => {
-    magicProjectsGrid.listen();
-    magicForksGrid.listen();
-  });
-</script>
+      const magicFriendsGrid = new MagicGrid({
+        container: "#friends_section",
+        animate: false,
+        gutter: 30,
+        static: true,
+        useMin: false,
+        maxColumns: 2,
+        useTransform: true
+      });
 
-</body>
-</html>
+      $("document").ready(() => {
+        magicProjectsGrid.listen();
+        magicForksGrid.listen();
+        magicFriendsGrid.listen();
+      });
+    </script>
+
+
+</body></html>
