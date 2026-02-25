@@ -182,16 +182,102 @@
         <a href="https://github.com/At0mXploit" target="_blank">made on earth by a human</a>
       </div>
     </div>
+    <script id="scramble-config" type="application/json">{"enabled":true,"phrases":["At0m, Let's Pwn.."]}</script>
     <script type="text/javascript">
-      setTimeout(function() {
-        document.getElementById("loading").classList.add("animated");
-        document.getElementById("loading").classList.add("fadeOut");
-        setTimeout(function() {
-          document.getElementById("loading").classList.remove("animated");
-          document.getElementById("loading").classList.remove("fadeOut");
-          document.getElementById("loading").style.display = "none";
-        }, 800);
-      }, 1500);
+      (function() {
+        var scrambleCfg = {};
+        try { scrambleCfg = JSON.parse(document.getElementById("scramble-config").textContent); } catch(e) {}
+
+        function hideLoading() {
+          document.getElementById("loading").classList.add("animated");
+          document.getElementById("loading").classList.add("fadeOut");
+          setTimeout(function() {
+            document.getElementById("loading").style.display = "none";
+          }, 800);
+        }
+
+        if (scrambleCfg.enabled && scrambleCfg.phrases && scrambleCfg.phrases.length > 0) {
+          document.getElementById("spinner").style.display = "none";
+          document.querySelector(".scramble-text").style.display = "block";
+
+          function TextScramble(el) {
+            this.el = el;
+            this.chars = "!<>-_\\/[]{}—=+*^?#________";
+            this.update = this.update.bind(this);
+          }
+          TextScramble.prototype.setText = function(newText) {
+            var oldText = this.el.innerText;
+            var length = Math.max(oldText.length, newText.length);
+            var self = this;
+            var promise = new Promise(function(resolve) { self.resolve = resolve; });
+            self.queue = [];
+            for (var i = 0; i < length; i++) {
+              var from = oldText[i] || "";
+              var to = newText[i] || "";
+              var start = Math.floor(Math.random() * 40);
+              var end = start + Math.floor(Math.random() * 40);
+              self.queue.push({ from: from, to: to, start: start, end: end });
+            }
+            cancelAnimationFrame(self.frameRequest);
+            self.frame = 0;
+            self.update();
+            return promise;
+          };
+          TextScramble.prototype.update = function() {
+            var output = "";
+            var complete = 0;
+            for (var i = 0, n = this.queue.length; i < n; i++) {
+              var item = this.queue[i];
+              if (this.frame >= item.end) {
+                complete++;
+                output += item.to;
+              } else if (this.frame >= item.start) {
+                if (!item.char || Math.random() < 0.28) {
+                  item.char = this.chars[Math.floor(Math.random() * this.chars.length)];
+                }
+                output += '<span class="dud">' + item.char + "</span>";
+              } else {
+                output += item.from;
+              }
+            }
+            this.el.innerHTML = output;
+            if (complete === this.queue.length) {
+              this.resolve();
+            } else {
+              this.frameRequest = requestAnimationFrame(this.update);
+              this.frame++;
+            }
+          };
+
+          var el = document.querySelector(".scramble-text");
+          var fx = new TextScramble(el);
+          var phrases = scrambleCfg.phrases;
+          var counter = 0;
+          var next = function() {
+            fx.setText(phrases[counter]).then(function() {
+              setTimeout(function() {
+                counter++;
+                if (counter < phrases.length) {
+                  next();
+                } else {
+                  setTimeout(hideLoading, 600);
+                }
+              }, 800);
+            });
+          };
+          next();
+        } else {
+          setTimeout(function() {
+            document.getElementById("loading").classList.add("animated");
+            document.getElementById("loading").classList.add("fadeOut");
+            setTimeout(function() {
+              document.getElementById("loading").classList.remove("animated");
+              document.getElementById("loading").classList.remove("fadeOut");
+              document.getElementById("loading").style.display = "none";
+            }, 800);
+          }, 1500);
+        }
+      })();
       $.getJSON("blog.json", function(blog) {
         blog = blog || [];
         if (blog.length == 0) {
@@ -255,6 +341,4 @@
         magicFriendsGrid.listen();
       });
     </script>
-
-
 </body></html>
