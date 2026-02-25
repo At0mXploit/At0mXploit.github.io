@@ -39,6 +39,20 @@ body {
   margin: 0;
 }
 
+.scramble-text {
+  display: none;
+  font-size: 42px;
+  font-family: "Questrial", sans-serif;
+  font-weight: bold;
+  color: var(--text-color);
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.scramble-text .dud {
+  opacity: 0.35;
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
