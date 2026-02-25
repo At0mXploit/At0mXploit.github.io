@@ -9,21 +9,27 @@
   "theme": "dark.css",
   "scrambleEnabled": true,
   "scramblePhrases": [
-   "At0m, Let's Pwn.."
+   "At0m",
+   "Lets Pwn",
+   "Loading..."
   ],
   "types": [
-   "owner"
+   "all"
   ],
-  "twitter": "At0mXploit",
-  "linkedin": "Rijan-Poudel",
-  "medium": null,
-  "dribbble": null,
-  "limit": 7,
+  "limit": 10,
   "repos": null,
   "customSocials": [
    {
     "label": "discord",
-    "url": "https://discord.com/@At0mXploit"
+    "url": "https://discord.gg/@At0mXploit"
+   },
+   {
+    "label": "hackthebox",
+    "url": "https://app.hackthebox.com/users/2109485"
+   },
+   {
+    "label": "ctftime",
+    "url": "https://ctftime.org/user/205608"
    }
   ],
   "friends": [
@@ -40,6 +46,8 @@
   "giscusCategoryId": "DIC_kwDORXDSB84C3HnV",
   "giscusTheme": "dark",
   "giscusReactions": true,
-  "giscusInputPosition": "bottom"
+  "giscusInputPosition": "bottom",
+  "twitter": "At0mXploit",
+  "linkedin": "Rijan-Poudel"
  }
 ]
