@@ -2,6 +2,9 @@
 tags:
   - Rust
 ---
+
+![](/images/rust.png)
+
 # Hello World
 
 Install rust using:
