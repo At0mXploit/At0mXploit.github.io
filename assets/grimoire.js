@@ -348,57 +348,91 @@ function normalizeCodeLang(codeLang) {
   if (["sh", "shell", "zsh"].includes(lang)) return "bash";
   if (["javascript", "jsx", "ts", "tsx"].includes(lang)) return "js";
   if (["c++", "cc", "cxx"].includes(lang)) return "cpp";
+  if (["rs"].includes(lang)) return "rust";
   return lang;
 }
 
 function highlightCode(code, codeLang) {
   const lang = normalizeCodeLang(codeLang);
-  const keywordSets = {
-    bash: /\b(if|then|else|elif|fi|for|do|done|while|in|case|esac|function|export|sudo|echo|cat|grep|ls|cd|mv|cp|rm|tar|unzip|git|wget|curl|base64|xxd)\b/g,
-    python: /\b(False|None|True|and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|if|import|in|is|lambda|not|or|pass|raise|return|try|while|with|yield)\b/g,
-    c: /\b(auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/g,
-    cpp: /\b(auto|bool|break|case|catch|char|class|const|continue|default|delete|do|double|else|enum|explicit|false|float|for|if|int|long|namespace|new|nullptr|private|protected|public|return|short|signed|sizeof|static|struct|switch|template|this|throw|true|try|typedef|typename|union|unsigned|using|virtual|void|while)\b/g,
-    js: /\b(await|break|case|catch|class|const|continue|default|delete|else|export|extends|false|finally|for|function|if|import|in|instanceof|let|new|null|return|static|super|switch|this|throw|true|try|typeof|var|while|yield)\b/g,
+
+  const tokenStyles = {
+    comment:  "color:#6b7280;font-style:italic",
+    string:   "color:#4ade80",
+    number:   "color:#67e8f9",
+    keyword:  "color:#f472b6;font-weight:600",
+    type:     "color:#93c5fd;font-weight:600",
+    macro:    "color:#fb923c;font-weight:600",
+    builtin:  "color:#fde047",
+    func:     "color:#d8b4fe",
+    attr:     "color:#9ca3af;font-style:italic",
+    operator: "color:#f9a8d4",
+    key:      "color:#bfdbfe",
+    section:  "color:#f472b6;font-weight:600",
+    variable: "color:#fdba74",
   };
 
   const patterns = {
     bash: [
-      { type: "comment", regex: /#[^\n]*/g },
-      { type: "string", regex: /"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g },
-      { type: "number", regex: /\b(?:0x[0-9a-fA-F]+|\d+(?:\.\d+)?)\b/g },
-      { type: "keyword", regex: keywordSets.bash },
+      { type: "comment",  regex: /#[^\n]*/g },
+      { type: "string",   regex: /"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\$'(?:\\.|[^'\\])*'/g },
+      { type: "variable", regex: /\$\{?[A-Za-z_][A-Za-z0-9_]*\}?/g },
+      { type: "number",   regex: /\b(?:0x[0-9a-fA-F]+|\d+(?:\.\d+)?)\b/g },
+      { type: "builtin",  regex: /\b(echo|cat|grep|ls|cd|mv|cp|rm|tar|unzip|wget|curl|base64|xxd|printf|read|source|export|alias|pwd|mkdir|chmod|chown|find|sed|awk|sort|cut|tr|head|tail|wc|xargs|tee|file|strings|objdump|strace|ltrace|gdb|python3?|pip3?|nc|nmap|ssh|scp|git)\b/g },
+      { type: "keyword",  regex: /\b(if|then|else|elif|fi|for|do|done|while|in|case|esac|function|return|local|declare|unset|shift|break|continue|exit|trap|true|false)\b/g },
     ],
     python: [
-      { type: "comment", regex: /#[^\n]*/g },
-      { type: "string", regex: /"""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g },
-      { type: "number", regex: /\b(?:0x[0-9a-fA-F]+|\d+(?:\.\d+)?)\b/g },
-      { type: "keyword", regex: keywordSets.python },
+      { type: "comment",  regex: /#[^\n]*/g },
+      { type: "string",   regex: /"""[\s\S]*?"""|'''[\s\S]*?'''|f"(?:\\.|[^"\\])*"|f'(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g },
+      { type: "number",   regex: /\b(?:0x[0-9a-fA-F]+|0b[01]+|0o[0-7]+|\d+(?:\.\d+)?(?:[eE][+-]?\d+)?j?)\b/g },
+      { type: "builtin",  regex: /\b(print|len|range|type|isinstance|list|dict|set|tuple|int|str|float|bool|bytes|bytearray|open|input|super|object|enumerate|zip|map|filter|sorted|reversed|any|all|abs|max|min|sum|hex|chr|ord|repr|hash|id|dir|vars|getattr|setattr|hasattr|callable|iter|next|format|bin|oct)\b/g },
+      { type: "keyword",  regex: /\b(False|None|True|and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield|async|await)\b/g },
+      { type: "func",     regex: /\b([A-Za-z_][A-Za-z0-9_]*)\s*(?=\()/g },
+      { type: "type",     regex: /\b(Exception|ValueError|TypeError|KeyError|AttributeError|IndexError|OSError|IOError|RuntimeError|StopIteration|GeneratorExit|SystemExit|NotImplementedError|OverflowError|ZeroDivisionError)\b/g },
     ],
     c: [
-      { type: "comment", regex: /\/\/[^\n]*|\/\*[\s\S]*?\*\//g },
-      { type: "string", regex: /"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g },
-      { type: "number", regex: /\b(?:0x[0-9a-fA-F]+|\d+(?:\.\d+)?)\b/g },
-      { type: "keyword", regex: keywordSets.c },
+      { type: "comment",  regex: /\/\/[^\n]*|\/\*[\s\S]*?\*\//g },
+      { type: "attr",     regex: /#\s*(?:include|define|ifdef|ifndef|endif|pragma|undef|elif|if|else)[^\n]*/g },
+      { type: "string",   regex: /"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g },
+      { type: "number",   regex: /\b(?:0x[0-9a-fA-F]+[uUlL]*|\d+(?:\.\d+)?(?:[eE][+-]?\d+)?[fFlLuU]*)\b/g },
+      { type: "type",     regex: /\b(size_t|ssize_t|ptrdiff_t|uint8_t|uint16_t|uint32_t|uint64_t|int8_t|int16_t|int32_t|int64_t|uintptr_t|intptr_t|FILE|NULL|bool|va_list|wchar_t|off_t)\b/g },
+      { type: "keyword",  regex: /\b(auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|inline|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/g },
+      { type: "func",     regex: /\b([A-Za-z_][A-Za-z0-9_]*)\s*(?=\()/g },
     ],
     cpp: [
-      { type: "comment", regex: /\/\/[^\n]*|\/\*[\s\S]*?\*\//g },
-      { type: "string", regex: /"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g },
-      { type: "number", regex: /\b(?:0x[0-9a-fA-F]+|\d+(?:\.\d+)?)\b/g },
-      { type: "keyword", regex: keywordSets.cpp },
+      { type: "comment",  regex: /\/\/[^\n]*|\/\*[\s\S]*?\*\//g },
+      { type: "attr",     regex: /#\s*(?:include|define|ifdef|ifndef|endif|pragma|undef|elif|if|else)[^\n]*/g },
+      { type: "string",   regex: /R"[^(]*\([\s\S]*?\)[^"]*"|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g },
+      { type: "number",   regex: /\b(?:0x[0-9a-fA-F]+[uUlL]*|\d+(?:\.\d+)?(?:[eE][+-]?\d+)?[fFlLuU]*)\b/g },
+      { type: "type",     regex: /\b(string|vector|map|unordered_map|set|unordered_set|pair|tuple|array|deque|queue|stack|list|shared_ptr|unique_ptr|weak_ptr|optional|variant|any|size_t|nullptr_t|auto)\b/g },
+      { type: "keyword",  regex: /\b(alignas|alignof|and|and_eq|asm|auto|bitand|bitor|bool|break|case|catch|char|char8_t|char16_t|char32_t|class|compl|concept|const|consteval|constexpr|constinit|const_cast|continue|co_await|co_return|co_yield|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|false|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|not|not_eq|nullptr|operator|or|or_eq|private|protected|public|reinterpret_cast|requires|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|true|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while|xor|xor_eq)\b/g },
+      { type: "func",     regex: /\b([A-Za-z_][A-Za-z0-9_]*)\s*(?=\()/g },
     ],
     js: [
-      { type: "comment", regex: /\/\/[^\n]*|\/\*[\s\S]*?\*\//g },
-      { type: "string", regex: /`(?:\\.|[^`\\])*`|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g },
-      { type: "number", regex: /\b(?:0x[0-9a-fA-F]+|\d+(?:\.\d+)?)\b/g },
-      { type: "keyword", regex: keywordSets.js },
+      { type: "comment",  regex: /\/\/[^\n]*|\/\*[\s\S]*?\*\//g },
+      { type: "string",   regex: /`(?:\\.|[^`\\])*`|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g },
+      { type: "number",   regex: /\b(?:0x[0-9a-fA-F]+|0b[01]+|0o[0-7]+|\d+(?:\.\d+)?(?:[eE][+-]?\d+)?n?)\b/g },
+      { type: "builtin",  regex: /\b(console|Math|JSON|Object|Array|String|Number|Boolean|Promise|Map|Set|WeakMap|WeakSet|Symbol|Proxy|Reflect|Date|RegExp|Error|fetch|setTimeout|setInterval|clearTimeout|clearInterval|parseInt|parseFloat|isNaN|isFinite|encodeURIComponent|decodeURIComponent)\b/g },
+      { type: "keyword",  regex: /\b(async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|false|finally|for|function|if|import|in|instanceof|let|new|null|of|return|static|super|switch|this|throw|true|try|typeof|undefined|var|void|while|with|yield)\b/g },
+      { type: "func",     regex: /\b([A-Za-z_$][A-Za-z0-9_$]*)\s*(?=\()/g },
     ],
-  };
-
-  const tokenClasses = {
-    comment: "text-gray-500 italic",
-    string: "text-green-400",
-    number: "text-cyan-300",
-    keyword: "text-pink-400 font-semibold",
+    rust: [
+      { type: "comment",  regex: /\/\/\/[^\n]*|\/\/[^\n]*|\/\*[\s\S]*?\*\//g },
+      { type: "attr",     regex: /#!?\[[\s\S]*?\]/g },
+      { type: "string",   regex: /b?"(?:\\.|[^"\\])*"|b?r#*"[\s\S]*?"#*|b?'(?:\\[^]|[^'\\])'/g },
+      { type: "number",   regex: /\b(?:0x[0-9a-fA-F_]+|0b[01_]+|0o[0-7_]+|\d[\d_]*(?:\.\d[\d_]*)?(?:[eE][+-]?\d+)?)(?:_?(?:u8|u16|u32|u64|u128|usize|i8|i16|i32|i64|i128|isize|f32|f64))?\b/g },
+      { type: "macro",    regex: /\b[a-z_][a-z0-9_]*!/g },
+      { type: "type",     regex: /\b(String|str|Vec|HashMap|HashSet|BTreeMap|BTreeSet|Option|Result|Box|Rc|Arc|Cell|RefCell|Mutex|RwLock|Cow|Pin|Future|Stream|Iterator|From|Into|AsRef|AsMut|Display|Debug|Clone|Copy|Send|Sync|Default|PartialEq|Eq|PartialOrd|Ord|Hash|u8|u16|u32|u64|u128|usize|i8|i16|i32|i64|i128|isize|f32|f64|bool|char|Never)\b/g },
+      { type: "keyword",  regex: /\b(as|async|await|break|const|continue|crate|dyn|else|enum|extern|false|fn|for|if|impl|in|let|loop|match|mod|move|mut|pub|ref|return|self|Self|static|struct|super|trait|true|type|union|unsafe|use|where|while)\b/g },
+      { type: "func",     regex: /\b([a-z_][a-z0-9_]*)\s*(?=\()/g },
+    ],
+    toml: [
+      { type: "comment",  regex: /#[^\n]*/g },
+      { type: "section",  regex: /^\s*\[\[?[^\]]*\]\]?/gm },
+      { type: "string",   regex: /"""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'[^']*'/g },
+      { type: "number",   regex: /\b(?:0x[0-9a-fA-F_]+|0b[01_]+|0o[0-7_]+|\d[\d_]*(?:\.\d[\d_]*)?(?:[eE][+-]?\d+)?)\b/g },
+      { type: "keyword",  regex: /\b(true|false|inf|nan)\b/g },
+      { type: "key",      regex: /^[ \t]*([A-Za-z_][A-Za-z0-9_.-]*)[ \t]*=/gm },
+    ],
   };
 
   const activePatterns = patterns[lang];
@@ -432,7 +466,7 @@ function highlightCode(code, codeLang) {
       html += escapeHtml(code.slice(cursor, nextMatch.index));
     }
 
-    html += `<span class="${tokenClasses[nextPattern.type]}">${escapeHtml(nextMatch[0])}</span>`;
+    html += `<span style="${tokenStyles[nextPattern.type]}">${escapeHtml(nextMatch[0])}</span>`;
     cursor = nextMatch.index + nextMatch[0].length;
   }
 
@@ -659,29 +693,41 @@ function buildTableOfContents(entries) {
 
   return `
     <aside class="mb-8">
-      <div class="bg-black/50 border-4 border-pink-400 p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-        <div class="inline-block bg-pink-400 border-2 border-black px-3 py-1 rotate-[-2deg] mb-4 transition-transform duration-200 ease-out hover:rotate-0 hover:scale-105">
-          <span class="font-black text-black uppercase text-sm">Table of Contents</span>
+      <div class="bg-black/50 border-4 border-pink-400 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        <button
+          data-toc-toggle
+          class="w-full flex items-center justify-between px-6 py-4 group border-0 outline-none"
+          aria-expanded="false"
+          aria-controls="toc-body"
+        >
+          <div class="inline-block bg-pink-400 border-2 border-black px-3 py-1 rotate-[-2deg] transition-transform duration-200 ease-out group-hover:rotate-0 group-hover:scale-105">
+            <span class="font-black text-black uppercase text-sm">Table of Contents</span>
+          </div>
+          <svg data-toc-arrow class="w-5 h-5 text-pink-400 transition-transform duration-300" style="transform:rotate(-90deg)" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div id="toc-body" class="px-6 pt-2" style="display:none;padding-bottom:1.5rem">
+          <nav aria-label="Table of contents">
+            <ul class="space-y-3">
+              ${entries
+                .map(
+                  (entry) => `
+                    <li>
+                      <a
+                        href="#${escapeHtml(entry.id)}"
+                        data-toc-link
+                        data-toc-target="${escapeHtml(entry.id)}"
+                        class="block text-sm font-bold text-gray-200 hover:text-pink-300 transition-colors"
+                        style="padding-left:${(entry.level - 2) * 16}px"
+                      >${escapeHtml(entry.title)}</a>
+                    </li>
+                  `
+                )
+                .join("")}
+            </ul>
+          </nav>
         </div>
-        <nav aria-label="Table of contents">
-          <ul class="space-y-3">
-            ${entries
-              .map(
-                (entry) => `
-                  <li>
-                    <a
-                      href="#${escapeHtml(entry.id)}"
-                      data-toc-link
-                      data-toc-target="${escapeHtml(entry.id)}"
-                      class="block text-sm font-bold text-gray-200 hover:text-pink-300 transition-colors"
-                      style="padding-left:${(entry.level - 2) * 16}px"
-                    >${escapeHtml(entry.title)}</a>
-                  </li>
-                `
-              )
-              .join("")}
-          </ul>
-        </nav>
       </div>
     </aside>
   `;
@@ -1476,6 +1522,23 @@ async function renderPost(posts, id) {
       setRoute(HOME_PATH);
     });
   });
+
+  const tocToggle = postRoot.querySelector("[data-toc-toggle]");
+  if (tocToggle) {
+    tocToggle.addEventListener("click", () => {
+      const body = document.getElementById("toc-body");
+      const arrow = tocToggle.querySelector("[data-toc-arrow]");
+      const expanded = tocToggle.getAttribute("aria-expanded") === "true";
+      tocToggle.setAttribute("aria-expanded", String(!expanded));
+      if (expanded) {
+        body.style.display = "none";
+        arrow.style.transform = "rotate(-90deg)";
+      } else {
+        body.style.display = "";
+        arrow.style.transform = "";
+      }
+    });
+  }
 
   postRoot.querySelectorAll("[data-toc-link]").forEach((link) => {
     link.addEventListener("click", (event) => {

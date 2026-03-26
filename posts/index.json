@@ -1,15 +1,15 @@
 [
   {
-    "id": "crab-diary",
-    "title": "Crab Diary",
-    "date": "2026-03-25",
+    "id": "crab-diaries",
+    "title": "Crab Diaries",
+    "date": "2026-03-26",
     "category": "Blogs",
-    "excerpt": "Rust Concepts that nobody might find useful.",
+    "excerpt": "Rust crash course notes covering ownership, modules, macros, async, and more.",
     "tags": [
       "rust"
     ],
     "color": "pink",
-    "path": "/posts/Crab%20Diary.md"
+    "path": "/posts/Crab%20Diaries.md"
   },
   {
     "id": "heap-exploitation-techniques",
