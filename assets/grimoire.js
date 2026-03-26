@@ -476,6 +476,7 @@ function highlightCode(code, codeLang) {
 function renderMarkdown(markdown) {
   const lines = preprocessMarkdown(markdown).split("\n");
   const html = [];
+  const seenIds = {};
   let paragraph = [];
   let inCode = false;
   let codeLang = "";
@@ -607,7 +608,9 @@ function renderMarkdown(markdown) {
       flushTable();
       const level = headingMatch[1].length;
       const text = headingMatch[2].trim();
-      const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      const baseId = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      seenIds[baseId] = (seenIds[baseId] || 0) + 1;
+      const id = seenIds[baseId] > 1 ? `${baseId}-${seenIds[baseId]}` : baseId;
       const classes = {
         1: "text-4xl md:text-6xl font-black text-white mb-4",
         2: "text-3xl font-black text-yellow-400 mt-14 mb-6 pt-4",
