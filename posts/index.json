@@ -4,7 +4,7 @@
     "title": "Crab Diaries",
     "date": "2026-03-26",
     "category": "Blogs",
-    "excerpt": "Rust crash course notes covering ownership, modules, macros, async, and more.",
+    "excerpt": "A crab was walking and he wrote some things he liked.",
     "tags": [
       "rust"
     ],
