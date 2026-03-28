@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://at0mxploit.xyz/</loc></url>
+  <url><loc>https://at0mxploit.xyz/post/pwnable-tw-start</loc></url>
+  <url><loc>https://at0mxploit.xyz/post/pwnable-tw-orw</loc></url>
   <url><loc>https://at0mxploit.xyz/post/crab-diaries</loc></url>
   <url><loc>https://at0mxploit.xyz/post/heap-exploitation-techniques</loc></url>
   <url><loc>https://at0mxploit.xyz/post/ethernaut</loc></url>

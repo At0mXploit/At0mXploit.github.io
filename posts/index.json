@@ -1,5 +1,37 @@
 [
   {
+    "id": "pwnable-tw-start",
+    "title": "Pwnable.tw - Start",
+    "date": "2026-03-28",
+    "category": "Blogs",
+    "excerpt": "Writeup for Pwnable.tw Start, covering the stack leak, ret-to-write trick, and shellcode injection path to code execution.",
+    "tags": [
+      "pwnable.tw",
+      "pwn",
+      "shellcode",
+      "stack",
+      "writeup"
+    ],
+    "color": "green",
+    "path": "/posts/Pwnable.tw/0x1%20-%20Pwnable.tw%20-%20Start.md"
+  },
+  {
+    "id": "pwnable-tw-orw",
+    "title": "Pwnable.tw - orw",
+    "date": "2026-03-28",
+    "category": "Blogs",
+    "excerpt": "Writeup for Pwnable.tw orw, focused on the seccomp constraint and building shellcode that uses only open, read, and write.",
+    "tags": [
+      "pwnable.tw",
+      "pwn",
+      "seccomp",
+      "shellcode",
+      "writeup"
+    ],
+    "color": "green",
+    "path": "/posts/Pwnable.tw/0x2%20-%20Pwnable.tw%20-%20orw.md"
+  },
+  {
     "id": "crab-diaries",
     "title": "Crab Diaries",
     "date": "2026-03-26",
