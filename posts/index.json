@@ -51,10 +51,12 @@
     "excerpt": "Some of Heap Exploitation Refreshers and Techniques.",
     "tags": [
       "heap",
-      "house-of-the-force"
+      "house-of-the-force",
+      "fastbin-dup"
     ],
     "color": "pink",
-    "path": "/posts/Heap%20Exploitation%20Techniques.md"
+    "path": "/posts/Heap%20Exploitation%20Techniques.md",
+    "sortOrder": 0
   },
   {
     "id": "ethernaut",
