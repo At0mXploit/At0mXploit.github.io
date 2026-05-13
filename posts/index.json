@@ -1,0 +1,97 @@
+[
+  {
+    "id": "pwnable-tw-start",
+    "title": "Pwnable.tw - Start",
+    "date": "2026-03-28",
+    "category": "Blogs",
+    "excerpt": "Writeup for Pwnable.tw Start, covering the stack leak, ret-to-write trick, and shellcode injection path to code execution.",
+    "tags": [
+      "pwnable.tw",
+      "pwn",
+      "shellcode",
+      "stack",
+      "writeup"
+    ],
+    "color": "green",
+    "path": "/posts/Pwnable.tw/0x1%20-%20Pwnable.tw%20-%20Start.md"
+  },
+  {
+    "id": "pwnable-tw-orw",
+    "title": "Pwnable.tw - orw",
+    "date": "2026-03-28",
+    "category": "Blogs",
+    "excerpt": "Writeup for Pwnable.tw orw, focused on the seccomp constraint and building shellcode that uses only open, read, and write.",
+    "tags": [
+      "pwnable.tw",
+      "pwn",
+      "seccomp",
+      "shellcode",
+      "writeup"
+    ],
+    "color": "green",
+    "path": "/posts/Pwnable.tw/0x2%20-%20Pwnable.tw%20-%20orw.md"
+  },
+  {
+    "id": "heap-exploitation-techniques",
+    "title": "Heap Exploitation Techniques",
+    "date": "2026-03-24",
+    "category": "Blogs",
+    "excerpt": "Some of Heap Exploitation Refreshers and Techniques.",
+    "tags": [
+      "heap",
+      "house-of-the-force",
+      "fastbin-dup"
+    ],
+    "color": "pink",
+    "path": "/posts/Heap%20Exploitation%20Techniques.md",
+    "sortOrder": 0
+  },
+  {
+    "id": "playing-with-elastic-kernel-objects",
+    "title": "Playing with Elastic Kernel Objects",
+    "date": "2026-03-22",
+    "category": "RESEARCH",
+    "excerpt": "Notes on ELOISE and elastic kernel objects, covering how they enable KASLR bypass, heap and stack overreads, arbitrary kernel reads, and cache-isolation defenses.",
+    "tags": [
+      "kernel",
+      "exploitation",
+      "research",
+      "windows",
+      "eloise"
+    ],
+    "color": "pink",
+    "path": "/posts/Playing%20with%20Elastic%20Kernel%20Objects.md"
+  },
+  {
+    "id": "binary-exploitation",
+    "title": "Binary Exploitation",
+    "date": "2026-03-18",
+    "category": "Blogs",
+    "excerpt": "Notes covering classic pwn concepts from command injection and stack abuse to ret2libc, heap bugs, and modern binary exploitation primitives.",
+    "tags": [
+      "pwn",
+      "binary-exploitation",
+      "rop",
+      "heap",
+      "notes"
+    ],
+    "color": "green",
+    "path": "/posts/binary-exploitation.md"
+  },
+  {
+    "id": "memory-forensics-memlabs",
+    "title": "Memory Forensics - MemLabs",
+    "date": "2026-03-17",
+    "category": "Blogs",
+    "excerpt": "A long-form MemLabs walkthrough focused on Volatility workflows, RAM triage, and practical digital forensics techniques.",
+    "tags": [
+      "forensics",
+      "memory-forensics",
+      "volatility",
+      "memlabs",
+      "writeup"
+    ],
+    "color": "blue",
+    "path": "/posts/memory-forensics-memlabs.md"
+  }
+]
