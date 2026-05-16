@@ -1,5 +1,19 @@
 [
   {
+    "id": "process-hollowing-and-base-relocations",
+    "title": "Process Hollowing and Base Relocations",
+    "date": "2026-05-16",
+    "category": "Blogs",
+    "excerpt": "A deep dive into process hollowing covering entry-point shellcode overwrite and full PE replacement with relocation handling.",
+    "tags": [
+      "Process-Injection",
+      "windows",
+      "process-hollowing"
+    ],
+    "color": "pink",
+    "path": "/posts/Process%20Hollowing%20and%20Base%20Relocations.md"
+  },
+  {
     "id": "pwnable-tw-start",
     "title": "Pwnable.tw - Start",
     "date": "2026-03-28",
@@ -45,22 +59,6 @@
     "color": "pink",
     "path": "/posts/Heap%20Exploitation%20Techniques.md",
     "sortOrder": 0
-  },
-  {
-    "id": "playing-with-elastic-kernel-objects",
-    "title": "Playing with Elastic Kernel Objects",
-    "date": "2026-03-22",
-    "category": "RESEARCH",
-    "excerpt": "Notes on ELOISE and elastic kernel objects, covering how they enable KASLR bypass, heap and stack overreads, arbitrary kernel reads, and cache-isolation defenses.",
-    "tags": [
-      "kernel",
-      "exploitation",
-      "research",
-      "windows",
-      "eloise"
-    ],
-    "color": "pink",
-    "path": "/posts/Playing%20with%20Elastic%20Kernel%20Objects.md"
   },
   {
     "id": "binary-exploitation",

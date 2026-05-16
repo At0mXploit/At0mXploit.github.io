@@ -1,7 +1,7 @@
 const POSTS_INDEX = "/posts/index.json";
 const HOME_PATH = "/";
 const POSTS_PER_PAGE = 8;
-const CATEGORY_ORDER = ["ALL", "HTB ACTIVE", "HTB RETIRED", "RESEARCH", "MY CHALLENGES", "Blogs"];
+const CATEGORY_ORDER = ["ALL", "RESEARCH", "Blogs"];
 const WORDS_PER_MINUTE = 200;
 const MIN_READ_MINUTES = 1;
 const GISCUS_CONFIG = {
@@ -474,7 +474,14 @@ function highlightCode(code, codeLang) {
 }
 
 function renderMarkdown(markdown) {
-  const lines = preprocessMarkdown(markdown).split("\n");
+  const svgBlocks = [];
+  const lines = preprocessMarkdown(markdown)
+    .replace(/<svg\b[\s\S]*?<\/svg>/gi, (match) => {
+      const idx = svgBlocks.length;
+      svgBlocks.push(match);
+      return `\n__SVG_BLOCK_${idx}__\n`;
+    })
+    .split("\n");
   const html = [];
   const seenIds = {};
   let paragraph = [];
@@ -484,6 +491,9 @@ function renderMarkdown(markdown) {
   let listType = null;
   let quoteLines = [];
   let tableLines = [];
+  let rawHtmlLines = [];
+  let inRawHtml = false;
+  let rawHtmlTag = "";
 
   function flushParagraph() {
     if (paragraph.length) {
@@ -563,6 +573,15 @@ function renderMarkdown(markdown) {
     codeLines = [];
   }
 
+  function flushRawHtml() {
+    if (rawHtmlLines.length) {
+      html.push(`<div class="my-8 overflow-x-auto">${rawHtmlLines.join("\n")}</div>`);
+      rawHtmlLines = [];
+      inRawHtml = false;
+      rawHtmlTag = "";
+    }
+  }
+
   for (const line of lines) {
     if (line.startsWith("```")) {
       flushParagraph();
@@ -580,6 +599,39 @@ function renderMarkdown(markdown) {
 
     if (inCode) {
       codeLines.push(line);
+      continue;
+    }
+
+    const svgPlaceholder = line.trim().match(/^__SVG_BLOCK_(\d+)__$/);
+    if (svgPlaceholder) {
+      flushParagraph();
+      flushList();
+      flushQuote();
+      flushTable();
+      html.push(`<div class="my-8 overflow-x-auto">${svgBlocks[parseInt(svgPlaceholder[1], 10)]}</div>`);
+      continue;
+    }
+
+    if (inRawHtml) {
+      rawHtmlLines.push(line);
+      if (new RegExp(`</${rawHtmlTag}>`, "i").test(line)) {
+        flushRawHtml();
+      }
+      continue;
+    }
+
+    const rawHtmlMatch = line.match(/^<(svg|figure|details|iframe)\b/i);
+    if (rawHtmlMatch) {
+      flushParagraph();
+      flushList();
+      flushQuote();
+      flushTable();
+      rawHtmlTag = rawHtmlMatch[1].toLowerCase();
+      inRawHtml = true;
+      rawHtmlLines.push(line);
+      if (new RegExp(`</${rawHtmlTag}>`, "i").test(line)) {
+        flushRawHtml();
+      }
       continue;
     }
 
@@ -673,6 +725,7 @@ function renderMarkdown(markdown) {
   flushQuote();
   flushTable();
   flushCode();
+  flushRawHtml();
 
   return html.join("");
 }
