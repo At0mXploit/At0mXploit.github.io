@@ -746,6 +746,101 @@ if (baseOffset) {
 ```
 
 This stage patches every absolute address inside the injected binary that was baked in at compile time. Each relocation block represents a 4KB page, and each entry within that block specifies a memory offset that must be corrected. The process reads each address, applies the base offset, and writes the corrected value back into memory. Without this step, the executable would crash due to invalid memory references.
+
+To explain it in more detail. When `VirtualAllocEx` returns a different address than the preferred `ImageBase`, every hardcoded absolute address inside the injected PE is now wrong. This is what the relocation table exists to fix.
+
+The delta between where the image landed and where it expected to land is:
+
+```c
+DWORD64 baseOffset = (DWORD64)alloc - nt->OptionalHeader.ImageBase;
+```
+
+If `baseOffset` is zero, the image is exactly where it wants to be and nothing needs patching. If it is non-zero, every absolute pointer inside the binary needs that delta added to it.
+
+**Step 1 Find the .reloc section**
+
+The relocation metadata lives in the `.reloc` section. The code searches section headers by name and grabs `PointerToRawData`, which is the raw file offset into our local `PEBytes` buffer where the relocation data begins.
+
+```c
+DWORD relocAddress = 0;
+for (int i = 0; i < nt->FileHeader.NumberOfSections; i++) {
+    if (memcmp(sec[i].Name, ".reloc", 6) == 0) {
+        relocAddress = sec[i].PointerToRawData;
+        break;
+    }
+}
+```
+
+The `DataDirectory` entry for `IMAGE_DIRECTORY_ENTRY_BASERELOC` gives us the total size of the relocation data, which controls the outer walk loop:
+
+```c
+IMAGE_DATA_DIRECTORY relocData =
+    nt->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_BASERELOC];
+```
+
+**Step 2  Walk relocation blocks**
+
+The `.reloc` section is structured as a sequence of blocks. Each block covers one 4KB memory page and is immediately followed by its entries, with no gaps:
+
+```c
+[ RELOCATION_BLOCK ][ ENTRY ][ ENTRY ][ ENTRY ][ RELOCATION_BLOCK ][ ENTRY ]...
+```
+
+```c
+while (offset < relocData.Size) {
+    PRELOCATION_BLOCK block =
+        (PRELOCATION_BLOCK)(PEBytes + relocAddress + offset);
+
+    offset += sizeof(RELOCATION_BLOCK);  // move past header, entries start here
+
+    PRELOCATION_ENTRY entries =
+        (PRELOCATION_ENTRY)(PEBytes + relocAddress + offset);
+
+    DWORD count =
+        (block->BlockSize - sizeof(RELOCATION_BLOCK)) / sizeof(RELOCATION_ENTRY);
+```
+
+Entry count is just: total block size minus the header, divided by entry size.
+
+**Step 3 Patch each address**
+
+Each entry has a 12-bit `Offset` within the page and a 4-bit `Type`. Type 0 is padding and skipped. For everything else, the exact RVA to patch is:
+
+```c
+DWORD field = block->PageAddress + entries[i].Offset;
+```
+
+`PageAddress` is the RVA of the 4KB page. `Offset` is the position within that page. Together they point to the exact location of a hardcoded pointer inside the mapped image in the remote process. The fix is to read => add delta => write back.
+
+```c
+DWORD64 value = 0;
+ReadProcessMemory(pi.hProcess, (PBYTE)alloc + field, &value, sizeof(PVOID), 0);
+value += baseOffset;
+WriteProcessMemory(pi.hProcess, (PBYTE)alloc + field, &value, sizeof(PVOID), 0);
+```
+
+Two things are happening simultaneously here: `PEBytes + relocAddress` is where we read relocation metadata from our local buffer, and `alloc + field` is where we read/write actual pointers inside the remote process. The table tells us what to fix, the remote memory is where we apply it.
+
+**Step 4 Advance to the next block**
+
+```c
+offset += count * sizeof(RELOCATION_ENTRY);
+```
+
+Combined with the `+= sizeof(RELOCATION_BLOCK)` from earlier, `offset` has now moved forward by the full `BlockSize`, landing exactly at the next block header. The loop continues until all relocation data is consumed. This is how to the process looks visually:
+
+```c
+.reloc section
+├── Block 1 (PageAddress = 0x1000)
+│   ├── Entry: Offset=0x020 => patch RVA 0x1020
+│   ├── Entry: Offset=0x048 => patch RVA 0x1048
+│   └── Entry: Offset=0x000, Type=0 => skip (padding)
+├── Block 2 (PageAddress = 0x2000)
+│   ├── Entry: Offset=0x010 → patch RVA 0x2010
+│   └── ...
+└── ...
+```
+
 ### Setting Execution Context and Starting the Process
 
 ```c
