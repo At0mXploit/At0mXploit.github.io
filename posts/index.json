@@ -1,17 +1,17 @@
 [
   {
     "id": "evading-defender-early-bird-injection",
-    "title": "Evading Defender with Queue Early Bird Injection",
+    "title": "Queue Early Bird Injection",
     "date": "2026-05-17",
     "category": "Blogs",
-    "excerpt": "Early Bird APC injection, queuing shellcode to a suspended thread with XOR encryption to bypass Windows Defender.",
+    "excerpt": "Early Bird APC injection, queuing shellcode to a suspended thread.",
     "tags": [
       "Process-Injection",
       "Windows",
       "APC"
     ],
     "color": "pink",
-    "path": "/posts/Evading%20Defender%20with%20Queue%20Early%20Bird%20Injection.md"
+    "path": "/posts/Queue%20Early%20Bird%20Injection.md"
   },
   {
     "id": "process-hollowing-and-base-relocations",
