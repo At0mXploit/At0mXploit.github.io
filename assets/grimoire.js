@@ -1629,7 +1629,7 @@ async function renderPost(posts, id) {
 }
 
 function currentPostId() {
-  const match = window.location.pathname.match(/^\/post\/([^/]+)$/);
+  const match = window.location.pathname.match(/^\/post\/([^/]+)\/?$/);
   return match ? decodeURIComponent(match[1]) : null;
 }
 
