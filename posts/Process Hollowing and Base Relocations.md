@@ -1109,6 +1109,14 @@ We can see `MZ` header just there search for string references and we can find o
 
 ![](/img/hollowed-msgbox.png)
 
+We can also run [ThreatCheck](https://github.com/rasta-mouse/ThreatCheck).
+
+```powershell
+PS C:\Users\Attacker\Desktop> C:\Tools\ThreatCheck\ThreatCheck\bin\Debug\ThreatCheck.exe -f .\Process.exe
+[+] No threat found!
+[*] Run time: 0.42s
+```
+
 ---
 
 
