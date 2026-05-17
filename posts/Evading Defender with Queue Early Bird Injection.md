@@ -3,6 +3,8 @@ tags:
 ---
 # Asynchronous Procedure Call (APC)
 
+![](/img/EarlyBirdCover.png)
+
 An APC is a Windows mechanism that allows a function to be queued for execution in context of specific thread. When a thread enters an alertable state (by calling functions like `SleepEx`, `WaitForSingleObjectsEx`, `MsgWaitForMultipleObjects` etc...), the Windows kernel checks if there are any pending APC queued to that thread and executes them. There is two types of APCs.
 
 ![](/img/APC.png)
