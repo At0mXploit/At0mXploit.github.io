@@ -1,5 +1,19 @@
 [
   {
+    "id": "hiding-imports-peb-eat-walking",
+    "title": "Hiding Imports with PEB and EAT Walking",
+    "date": "2026-05-19",
+    "category": "Blogs",
+    "excerpt": "Walking the PEB to find loaded DLL bases and manually parsing the EAT to resolve function addresses without touching LoadLibrary or GetProcAddress.",
+    "tags": [
+      "PEB-Walking",
+      "IAT-Walking",
+      "Windows"
+    ],
+    "color": "pink",
+    "path": "/posts/Hiding%20Imports%20with%20PEB%20and%20EAT%20Walking.md"
+  },
+  {
     "id": "queue-early-bird-injection",
     "title": "Queue Early Bird Injection",
     "date": "2026-05-17",
