@@ -1847,7 +1847,7 @@ This will still be detected in Windows 11:
 
 ![](/img/augh.png)
 
-The import table is clean and strings are clean too but the behavioral engine still detects it, we will look into bypassing this too in next blog.
+The import table is clean and strings are clean too but the behavioral engine still detects it. That's a different problem, and it needs a different solution. Next time we dig into why.
 
 ---
 
