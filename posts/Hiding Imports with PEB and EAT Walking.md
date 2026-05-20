@@ -1843,12 +1843,13 @@ int main(int argc, char *argv[])
 }
 ```
 
-This will still be detected in Windows 11:
-
-![](/img/augh.png)
-
-The import table is clean and strings are clean too but the behavioral engine still detects it. That's a different problem, and it needs a different solution. Next time we dig into why.
 
 ---
 
+Remove the Mark Of The Web `Zone.Identifier`:
 
+![](/img/lfg.png)
+
+Windows Defender doesn't detect it which means our evading is indeed successful. This is will only work on defenders if this was EDR we would need to evade behavioral analysis too which we will cover next time.
+
+---
