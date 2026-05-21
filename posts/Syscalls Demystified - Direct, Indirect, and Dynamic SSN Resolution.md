@@ -1,4 +1,4 @@
----
+https://github.com/At0mXploit/Syscalls-Demystified--0
 tags:
   - MalwareDevelopment
 ---
@@ -2595,7 +2595,7 @@ BOOL is_clean_stub(ULONG_PTR p) {
 }
 ```
 
-This is a much stronger check. A stub only passes if both the prologue AND the syscall instruction are intact. A partially hooked stub that preserved `4C 8B D1 B8` but corrupted the middle bytes will fail at the `+0x12` check. Noticed that codes be getting shitty long so just check from this [snippet](https://github.com) at github.
+This is a much stronger check. A stub only passes if both the prologue AND the syscall instruction are intact. A partially hooked stub that preserved `4C 8B D1 B8` but corrupted the middle bytes will fail at the `+0x12` check. Noticed that codes be getting shitty long so just check from this [snippet](https://github.com/At0mXploit/Syscalls-Demystified) at Github.
 ## Heaven's Gate
 
 This is a more older technique which first appeared around 2009. It allows 32-bit malware running on 64-bit systems to hide API calls by switching to a 64-bit execution environment. The trick exploits **WoW64** the Windows subsystem that lets 32-bit processes run on 64-bit Windows.
