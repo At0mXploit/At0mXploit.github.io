@@ -1,4 +1,4 @@
-https://github.com/At0mXploit/Syscalls-Demystified--0
+---
 tags:
   - MalwareDevelopment
 ---
