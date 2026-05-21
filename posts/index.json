@@ -1,5 +1,24 @@
 [
   {
+    "id": "syscalls-demystified",
+    "title": "Syscalls Demystified - Direct, Indirect, and Dynamic SSN Resolution",
+    "date": "2026-05-21",
+    "category": "Blogs",
+    "excerpt": "How syscalls work from usermode to kernel, and how to invoke them directly, indirectly, and with dynamic SSN resolution to bypass EDR hooks.",
+    "tags": [
+      "Windows",
+      "Syscalls",
+      "Direct-Syscall",
+      "Indirect-Syscall",
+      "Hells-Gate",
+      "Halos-Gate",
+      "Tartarus-Gate",
+      "Heavens-Gate"
+    ],
+    "color": "pink",
+    "path": "/posts/Syscalls%20Demystified%20-%20Direct%2C%20Indirect%2C%20and%20Dynamic%20SSN%20Resolution.md"
+  },
+  {
     "id": "hiding-imports-peb-eat-walking",
     "title": "Hiding Imports with PEB and EAT Walking",
     "date": "2026-05-19",
