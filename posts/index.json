@@ -1,5 +1,20 @@
 [
   {
+    "id": "generic-syscall-stub",
+    "title": "Generic Syscall Stub",
+    "date": "2026-05-25",
+    "category": "Blogs",
+    "excerpt": "Instead of writing a separate stub per syscall, one generic stub that handles every single Nt* function, continuation of Syscalls Demystified.",
+    "tags": [
+      "Windows",
+      "Syscalls",
+      "Direct-Syscall",
+      "Indirect-Syscall"
+    ],
+    "color": "blue",
+    "path": "/posts/Generic%20Syscall%20Stub.md"
+  },
+  {
     "id": "syscalls-demystified",
     "title": "Syscalls Demystified - Direct, Indirect, and Dynamic SSN Resolution",
     "date": "2026-05-21",
