@@ -1,5 +1,20 @@
 [
   {
+    "id": "reclaiming-clean-syscalls",
+    "title": "Reclaiming Clean Syscalls in Userland",
+    "date": "2026-05-27",
+    "category": "Blogs",
+    "excerpt": "EDRs hook Nt* functions with jmp stubs, walk the EAT to detect them, reclaim clean syscalls by loading a fresh ntdll from disk and inline stub patching.",
+    "tags": [
+      "Windows",
+      "Syscalls",
+      "API-Unhooking",
+      "EDR-Evasion"
+    ],
+    "color": "blue",
+    "path": "/posts/Reclaiming%20Clean%20Syscalls%20in%20Userland.md"
+  },
+  {
     "id": "generic-syscall-stub",
     "title": "Generic Syscall Stub",
     "date": "2026-05-25",
