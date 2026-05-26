@@ -1477,4 +1477,6 @@ On any x64 machine running Windows 10 or 11 natively, `SystemCall` is always 0, 
 - Approach 2 = one big memcpy but reads raw file bytes, needs `PointerToRawData`
 - Approach 3 = kernel maps the clean copy properly as a PE image, SSNs readable directly with zero guessing, then optionally remaps the hooked ntdll from it
 
+Well, that's all for now. Let's see what I'll cover next.
+
 ---
