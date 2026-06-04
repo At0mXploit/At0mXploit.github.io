@@ -1,5 +1,20 @@
 [
   {
+    "id": "integrating-misp-with-wazuh",
+    "title": "Integrating MISP with Wazuh",
+    "date": "2026-06-04",
+    "category": "Blogs",
+    "excerpt": "Integrating MISP threat intelligence with Wazuh SIEM to automatically detect known malware and enrich security alerts with context.",
+    "tags": [
+      "SIEM",
+      "Wazuh",
+      "MISP",
+      "Threat-Intelligence"
+    ],
+    "color": "purple",
+    "path": "/posts/Integrating%20MISP%20with%20Wazuh.md"
+  },
+  {
     "id": "reclaiming-clean-syscalls",
     "title": "Reclaiming Clean Syscalls in Userland",
     "date": "2026-05-27",
