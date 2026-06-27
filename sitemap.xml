@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://at0mxploit.xyz/</loc></url>
+  <url><loc>https://at0mxploit.xyz/post/the-cpu</loc></url>
+  <url><loc>https://at0mxploit.xyz/post/the-bus</loc></url>
+  <url><loc>https://at0mxploit.xyz/post/parsing-the-cartridge</loc></url>
+  <url><loc>https://at0mxploit.xyz/post/understanding-6502-assembly</loc></url>
   <url><loc>https://at0mxploit.xyz/post/evading-defender-early-bird-injection</loc></url>
   <url><loc>https://at0mxploit.xyz/post/integrating-misp-with-wazuh</loc></url>
   <url><loc>https://at0mxploit.xyz/post/reclaiming-clean-syscalls</loc></url>

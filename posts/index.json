@@ -1,5 +1,65 @@
 [
   {
+    "id": "the-cpu",
+    "title": "0xD - The CPU",
+    "date": "2026-06-28",
+    "category": "Blogs",
+    "excerpt": "Building the NES emulator CPU core: registers, flags, fetch-decode-execute, addressing modes, stack behavior, branches, and opcode execution.",
+    "tags": [
+      "NES",
+      "Emulator",
+      "6502",
+      "CPU"
+    ],
+    "color": "blue",
+    "path": "/posts/Building%20NES%20Emulator/0xD%20-%20The%20CPU.md"
+  },
+  {
+    "id": "the-bus",
+    "title": "0xC - The Bus",
+    "date": "2026-06-25",
+    "category": "Blogs",
+    "excerpt": "Wiring the emulator components together with the NES CPU memory map, RAM mirroring, PPU register mirrors, and cartridge routing.",
+    "tags": [
+      "NES",
+      "Emulator",
+      "Bus",
+      "Memory-Map"
+    ],
+    "color": "purple",
+    "path": "/posts/Building%20NES%20Emulator/0xC%20-%20The%20Bus.md"
+  },
+  {
+    "id": "parsing-the-cartridge",
+    "title": "0xB - Parsing the Cartridge",
+    "date": "2026-06-25",
+    "category": "Blogs",
+    "excerpt": "Parsing iNES cartridge files: headers, PRG-ROM, CHR-ROM, mapper flags, trainer handling, and mirroring metadata for the emulator.",
+    "tags": [
+      "NES",
+      "Emulator",
+      "Cartridge",
+      "iNES"
+    ],
+    "color": "green",
+    "path": "/posts/Building%20NES%20Emulator/0xB%20-%20Parsing%20the%20Cartridge.md"
+  },
+  {
+    "id": "understanding-6502-assembly",
+    "title": "0xA - Understanding 6502 Assembly",
+    "date": "2026-06-24",
+    "category": "Blogs",
+    "excerpt": "Part one of the NES emulator series, covering 6502 registers, memory, instructions, addressing basics, flags, branches, and the stack.",
+    "tags": [
+      "NES",
+      "Emulator",
+      "6502",
+      "Assembly"
+    ],
+    "color": "orange",
+    "path": "/posts/Building%20NES%20Emulator/0xA%20-%20Understanding%206502%20Assembly.md"
+  },
+  {
     "id": "integrating-misp-with-wazuh",
     "title": "Integrating MISP with Wazuh",
     "date": "2026-06-04",
